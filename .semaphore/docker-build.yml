@@ -18,7 +18,7 @@ blocks:
         # For info on environment variables, see:
         # https://docs.semaphoreci.com/article/66-environment-variables-and-secrets
         - name: AWS_DEFAULT_REGION
-          value: 531239714189.dkr.ecr.us-east-2.amazonaws.com
+          value: us-east-2
         - name: ECR_REGISTRY
           value: 531239714189.dkr.ecr.us-east-2.amazonaws.com/semaphore-ruby-pipeline-eks
       # Mount a secret which defines AWS_ACCESS_KEY_ID
