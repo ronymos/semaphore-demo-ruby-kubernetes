@@ -9,7 +9,7 @@ blocks:
     task:
       env_vars:
         - name: AWS_DEFAULT_REGION
-          value: 531239714189.dkr.ecr.us-east-2.amazonaws.com
+          value: us-east-2
         - name: ECR_REGISTRY
           value: 531239714189.dkr.ecr.us-east-2.amazonaws.com/semaphore-ruby-pipeline-eks
       secrets:
@@ -21,8 +21,8 @@ blocks:
             - sudo pip install awscli
             - aws ecr get-login --no-include-email | bash
             - 'docker pull "${ECR_REGISTRY}:latest" || true'
-            - 'docker build --cache-from "${ECR_REGISTRY}:latest" -t "${ECR_REGISTRY}:${SEMAPHORE_WORKFLOW_ID}" .'
-            - docker images
+            - 'docker build --cache-from "${ECR_REGISTRY}:latest" -t "${ECR_REGISTRY}:${SEMAPHORE_WORKFLOW_ID}" -t Dockerfile.ci .'
+            - 'docker images          '
             - 'docker push "${ECR_REGISTRY}:${SEMAPHORE_WORKFLOW_ID}"'
 promotions:
   - name: Deploy to Kubernetes
