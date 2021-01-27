@@ -15,6 +15,9 @@ blocks:
             - bundle config set deployment 'true'
             - bundle install --path vendor/bundle
             - cache store
+      secrets:
+        - name: AWS
+        - name: aws-k8s
   - name: Tests
     task:
       jobs:
@@ -31,3 +34,5 @@ promotions:
       - result: passed
     auto_promote:
       when: branch = 'master' AND result = 'passed'
+  - name: Promotion 2
+    pipeline_file: pipeline_6.yml
