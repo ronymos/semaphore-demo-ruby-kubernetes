@@ -17,7 +17,7 @@ blocks:
             - 'export PATH=~/bin:$PATH'
             - sudo pip install awscli
             - 'export ECR_PASSWORD=$(aws ecr get-login --no-include-email | awk ''{print $6}'')'
-            - 'kubectl create secret docker-registry aws-ecr --docker-server="https://$ECR_REGISTRY" --docker-username=AWS --docker-password="$ECR_PASSWORD"'
+            - 'kubectl create secret docker-registry aws-ecr --docker-server=https://$ECR_REGISTRY --docker-username=AWS --docker-password=$ECR_PASSWORD'
             - 'envsubst < deployment.yml | tee deploy.yml            '
             - kubectl apply -f deploy.yml
       secrets:
