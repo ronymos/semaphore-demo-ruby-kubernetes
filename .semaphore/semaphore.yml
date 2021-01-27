@@ -32,5 +32,3 @@ promotions:
     pipeline_file: docker-build.yml
     auto_promote_on:
       - result: passed
-  - name: Promotion 2
-    pipeline_file: pipeline_6.yml
