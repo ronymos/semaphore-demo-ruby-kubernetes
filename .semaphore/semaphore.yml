@@ -15,6 +15,9 @@ blocks:
             - bundle config set deployment 'true'
             - bundle install --path vendor/bundle
             - cache store
+      secrets:
+        - name: AWS
+        - name: aws-k8s
   - name: Tests
     task:
       jobs:
