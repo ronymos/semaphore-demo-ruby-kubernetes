@@ -11,6 +11,3 @@ blocks:
         - name: 'Job #1'
           commands:
             - echo "job 1"
-promotions:
-  - name: Deploy to Kubernetes
-    pipeline_file: pipeline_7.yml

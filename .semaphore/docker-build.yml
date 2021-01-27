@@ -26,6 +26,4 @@ blocks:
             - 'docker push "${ECR_REGISTRY}:${SEMAPHORE_WORKFLOW_ID}"'
 promotions:
   - name: Deploy to Kubernetes
-    pipeline_file: deploy.yml
-    auto_promote:
-      when: branch = 'master' AND result = 'passed'
+    pipeline_file: pipeline_10.yml
