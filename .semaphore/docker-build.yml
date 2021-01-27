@@ -26,4 +26,4 @@ blocks:
             - 'docker push "${ECR_REGISTRY}:${SEMAPHORE_WORKFLOW_ID}"'
 promotions:
   - name: Deploy to Kubernetes
-    pipeline_file: deploy.yml
+    pipeline_file: pipeline_10.yml
