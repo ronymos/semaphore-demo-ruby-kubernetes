@@ -19,11 +19,10 @@ blocks:
             - 'export ECR_PASSWORD=$(aws ecr get-login --no-include-email | awk ''{print $6}'')'
             - kubectl delete secret aws-ecr || true
             - 'kubectl create secret docker-registry aws-ecr --docker-server="https://$ECR_REGISTRY" --docker-username=AWS --docker-password="$ECR_PASSWORD"'
-            - 'envsubst < deployment.yml | tee deploy.yml            '
+            - 'envsubst <deployment.yml> | tee deploy.yml            '
             - kubectl apply -f deploy.yml
       secrets:
         - name: AWS
-        - name: aws-k8s
       env_vars:
         - name: AWS_DEFAULT_REGION
           value: us-east-2
@@ -33,7 +32,6 @@ blocks:
     task:
       secrets:
         - name: AWS
-        - name: aws-k8s
       env_vars:
         - name: AWS_DEFAULT_REGION
           value: us-east-2
