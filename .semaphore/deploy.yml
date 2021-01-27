@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: semaphore-demo-ruby-kubernetes-lb
+spec:
+  selector:
+    app: semaphore-demo-ruby-kubernetes
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 4567
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: semaphore-demo-ruby-kubernetes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: semaphore-demo-ruby-kubernetes
+  template:
+    metadata:
+      labels:
+        app: semaphore-demo-ruby-kubernetes
+    spec:
+      containers:
+        - name: semaphore-demo-ruby-kubernetes
+          image: "531239714189.dkr.ecr.us-east-2.amazonaws.com/semaphore-ruby-pipeline-eks:latest"
+      imagePullSecrets:
+        - name: aws-ecr
