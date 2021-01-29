@@ -5,7 +5,7 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: Deploy
+  - name: Deploy to Kubernetes
     task:
       jobs:
         - name: Deploy
@@ -20,6 +20,7 @@ blocks:
             - kubectl delete secret aws-ecr2 || true
             - 'kubectl create secret docker-registry aws-ecr2 --docker-server=https://531239714189.dkr.ecr.us-east-2.amazonaws.com/semaphore-ruby-pipeline-eks --docker-username=AWS --docker-password=$ECR_PASSWORD'
             - envsubst < deployment.yml | tee deploy.yml
+            - kubectl delete -f deploy.yml --grace-period=0 --force
             - kubectl apply -f deploy.yml
       secrets:
         - name: AWS
