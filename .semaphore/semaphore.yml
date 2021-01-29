@@ -17,7 +17,6 @@ blocks:
             - cache store
       secrets:
         - name: AWS
-        - name: aws-k8s
   - name: Tests
     task:
       jobs:
@@ -32,3 +31,5 @@ promotions:
     pipeline_file: docker-build.yml
     auto_promote_on:
       - result: passed
+    auto_promote:
+      when: branch = 'master' AND result = 'passed'
