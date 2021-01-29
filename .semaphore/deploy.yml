@@ -28,6 +28,6 @@ spec:
     spec:
       containers:
         - name: semaphore-demo-ruby-kubernetes
-          image: "531239714189.dkr.ecr.us-east-2.amazonaws.com:latest"
+          image: "531239714189.dkr.ecr.us-east-2.amazonaws.com/semaphore-ruby-pipeline-eks:latest"
       imagePullSecrets:
-        - name: aws-ecr
+        - name: aws-ecr2
