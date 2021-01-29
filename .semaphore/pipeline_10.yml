@@ -24,7 +24,6 @@ blocks:
             - kubectl apply -f deploy.yml
       secrets:
         - name: AWS
-        - name: aws-k8s
       env_vars:
         - name: AWS_DEFAULT_REGION
           value: us-east-2

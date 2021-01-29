@@ -27,5 +27,3 @@ blocks:
 promotions:
   - name: Deploy to Kubernetes
     pipeline_file: pipeline_10.yml
-    auto_promote:
-      when: branch = 'master' AND result = 'passed'
