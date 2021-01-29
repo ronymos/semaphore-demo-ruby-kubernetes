@@ -49,4 +49,5 @@ blocks:
             - 'docker pull "${ECR_REGISTRY}:$SEMAPHORE_WORKFLOW_ID"'
             - 'docker tag "${ECR_REGISTRY}:$SEMAPHORE_WORKFLOW_ID" "${ECR_REGISTRY}:latest"'
             - 'docker push "${ECR_REGISTRY}:latest"'
-    dependencies: []
+    dependencies:
+      - Deploy to Kubernetes
