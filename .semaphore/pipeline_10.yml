@@ -16,7 +16,10 @@ blocks:
             - chmod a+x ~/bin/aws-iam-authenticator
             - 'export PATH=~/bin:$PATH'
             - sudo pip install awscli
-            - 'export ECR_PASSWORD=$(aws ecr get-login --no-include-email | awk ''{print $6}'')           '
+            - 'export ECR_PASSWORD=$(aws ecr get-login --no-include-email | awk ''{print $6}'')'
+            - kubectl delete secret aws-ecr2 || true
+            - 'kubectl create secret docker-registry aws-ecr2 --docker-server=https://531239714189.dkr.ecr.us-east-2.amazonaws.com/semaphore-ruby-pipeline-eks --docker-username=AWS --docker-password=$ECR_PASSWORD'
+            - envsubst < deployment.yml | tee deploy.yml
             - kubectl apply -f deploy.yml
       secrets:
         - name: AWS
