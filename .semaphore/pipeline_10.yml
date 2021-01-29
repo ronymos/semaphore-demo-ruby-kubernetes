@@ -18,7 +18,7 @@ blocks:
             - sudo pip install awscli
             - 'export ECR_PASSWORD=$(aws ecr get-login --no-include-email | awk ''{print $6}'')'
             - kubectl delete secret aws-ecr2 || true
-            - 'kubectl create secret docker-registry aws-ecr2 --docker-server="https://531239714189.dkr.ecr.us-east-2.amazonaws.com/semaphore-ruby-pipeline-eks" --docker-username=AWS --docker-password=$ECR_PASSWORD'
+            - 'kubectl create secret docker-registry aws-ecr2 --docker-server="https://$ECR_REGISTRY" --docker-username=AWS --docker-password=$ECR_PASSWORD'
             - kubectl get secret aws-ecr2
             - envsubst < deployment.yml | tee deploy.yml
             - kubectl delete -f deploy.yml --grace-period=0 --force
@@ -31,6 +31,7 @@ blocks:
           value: us-east-2
         - name: ECR_REGISTRY
           value: 531239714189.dkr.ecr.us-east-2.amazonaws.com/semaphore-ruby-pipeline-eks
+    dependencies: []
   - name: Tag latest release
     task:
       secrets:
@@ -48,3 +49,4 @@ blocks:
             - 'docker pull "${ECR_REGISTRY}:$SEMAPHORE_WORKFLOW_ID"'
             - 'docker tag "${ECR_REGISTRY}:$SEMAPHORE_WORKFLOW_ID" "${ECR_REGISTRY}:latest"'
             - 'docker push "${ECR_REGISTRY}:latest"'
+    dependencies: []
