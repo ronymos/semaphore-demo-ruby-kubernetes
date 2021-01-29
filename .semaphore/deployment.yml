@@ -30,4 +30,4 @@ spec:
         - name: semaphore-demo-ruby-kubernetes
           image: "${ECR_REGISTRY}:${SEMAPHORE_WORKFLOW_ID}"
       imagePullSecrets:
-        - name: aws-ecr
+        - name: aws-ecr2
